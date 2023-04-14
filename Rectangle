@@ -1,0 +1,41 @@
+class Rectangle:
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+    
+    def move(self, dx, dy):
+        self.x += dx
+        self.y += dy
+        
+    def resize(self, dw, dh):
+        self.width += dw
+        self.height += dh
+        
+    def get_intersection(self, other):
+        x1 = max(self.x, other.x)
+        y1 = max(self.y, other.y)
+        x2 = min(self.x + self.width, other.x + other.width)
+        y2 = min(self.y + self.height, other.y + other.height)
+        
+        if x1 >= x2 or y1 >= y2:
+            return None
+        
+        return Rectangle(x1, y1, x2 - x1, y2 - y1)
+    
+    @staticmethod
+    def get_enclosing(rectangles):
+        if not rectangles:
+            return None
+        
+        x1 = min(r.x for r in rectangles)
+        y1 = min(r.y for r in rectangles)
+        x2 = max(r.x + r.width for r in rectangles)
+        y2 = max(r.y + r.height for r in rectangles)
+        
+        return Rectangle(x1, y1, x2 - x1, y2 - y1)
+        
+if __name__ == '__main__':
+	r1 = Rectangle(0,0,45,65)
+	r2 = Rectangle(5,18,15,30) 
