@@ -37,5 +37,8 @@ class Rectangle:
         return Rectangle(x1, y1, x2 - x1, y2 - y1)
         
 if __name__ == '__main__':
-	r1 = Rectangle(0,0,45,65)
-	r2 = Rectangle(5,18,15,30) 
+	r1 = Rectangle(0, 0, 45, 65)
+	r2 = Rectangle(5, 18, 15, 30)
+	r3 = r1.get_intersection(r2)
+	print(r3.x, r3.y, r3.width, r3.height)
+
